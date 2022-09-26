@@ -3,8 +3,9 @@
 <h3>Specialty: <%= @doctor.specialty %></h3>
 <h3>Doctorate From: <%= @doctor.university %></h3>
 <h3>Patients:</h3>
-<% @doctor.patients.each do |patient| %>
-  <div id="patient_<%= patient.id %>">
-    <%= patient.name %>
+<% @doctor.doctor_patients.each do |doctor_patient| %>
+  <div id="patient_<%= doctor_patient.patient.id %>">
+    <%= doctor_patient.patient.name %>
+    <%= button_to "Remove Patient", doctor_patient_path(doctor_patient.id), method: :delete %>
   </div>
 <% end %>
