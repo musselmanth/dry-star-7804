@@ -15,28 +15,6 @@ ActiveRecord::Schema.define(version: 2022_09_26_151756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chefs", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dish_ingredients", force: :cascade do |t|
-    t.bigint "dish_id"
-    t.bigint "ingredient_id"
-    t.index ["dish_id"], name: "index_dish_ingredients_on_dish_id"
-    t.index ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id"
-  end
-
-  create_table "dishes", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.bigint "chef_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chef_id"], name: "index_dishes_on_chef_id"
-  end
-
   create_table "doctor_patients", force: :cascade do |t|
     t.bigint "doctor_id"
     t.bigint "patient_id"
@@ -56,19 +34,11 @@ ActiveRecord::Schema.define(version: 2022_09_26_151756) do
     t.string "name"
   end
 
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name"
-    t.integer "calories"
-  end
-
   create_table "patients", force: :cascade do |t|
     t.string "name"
     t.integer "age"
   end
 
-  add_foreign_key "dish_ingredients", "dishes"
-  add_foreign_key "dish_ingredients", "ingredients"
-  add_foreign_key "dishes", "chefs"
   add_foreign_key "doctor_patients", "doctors"
   add_foreign_key "doctor_patients", "patients"
   add_foreign_key "doctors", "hospitals"
