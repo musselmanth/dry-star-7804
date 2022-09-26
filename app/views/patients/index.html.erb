@@ -1,0 +1,6 @@
+<h1>Patient Directory</h1>
+<% @patients.each do |patient| %>
+  <div id="patient_<%= patient.id %>">
+    <%= patient.name %>
+  </div>
+<% end %>
